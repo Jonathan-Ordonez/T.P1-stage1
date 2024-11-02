@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aventura en la Mansión Abandonada</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #111;
+            color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        #game-container {
+            max-width: 600px;
+            margin: auto;
+            background-color: #222;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        p {
+            margin: 15px 0;
+            text-align: center;
+        }
+        .choice {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .choice:hover {
+            background-color: #388E3C;
+        }
+    </style>
+</head>
+<body>
+
+<div id="game-container">
+    <h1>Aventura en la Mansión Abandonada</h1>
+    <p id="story-text">
+        Te despiertas en la entrada de una antigua mansión abandonada. La puerta está entreabierta y sientes una brisa fría. 
+        ¿Qué decides hacer?
+    </p>
+    <button class="choice" onclick="choose('entrar')">Entrar en la mansión</button>
+    <button class="choice" onclick="choose('huir')">Huir de allí</button>
+</div>
+
+<script>
+    function choose(option) {
+        const storyText = document.getElementById('story-text');
+        const gameContainer = document.getElementById('game-container');
+
+        if (option === 'entrar') {
+            storyText.innerHTML = "Entras en la mansión. Escuchas un susurro que dice tu nombre desde el piso superior. ¿Subes las escaleras o investigas la planta baja?";
+            gameContainer.innerHTML += `
+                <button class="choice" onclick="choose('subir')">Subir las escaleras</button>
+                <button class="choice" onclick="choose('bajar')">Investigar la planta baja</button>
+            `;
+        } else if (option === 'huir') {
+            storyText.innerHTML = "Sales corriendo, pero sientes que algo te sigue. Tropiezas en el camino y el bosque a tu alrededor parece moverse. ¿Te escondes o sigues corriendo?";
+            gameContainer.innerHTML += `
+                <button class="choice" onclick="choose('esconderse')">Esconderse</button>
+                <button class="choice" onclick="choose('correr')">Seguir corriendo</button>
+            `;
+        } else if (option === 'subir') {
+            storyText.innerHTML = "Subes las escaleras y encuentras una habitación con un espejo antiguo. Al mirarlo, ves una sombra detrás de ti. ¿Te das la vuelta o tocas el espejo?";
+            gameContainer.innerHTML += `
+                <button class="choice" onclick="choose('darse_vuelta')">Darte la vuelta</button>
+                <button class="choice" onclick="choose('tocar_espejo')">Tocar el espejo</button>
+            `;
+        } else if (option === 'bajar') {
+            storyText.innerHTML = "En la planta baja, encuentras una puerta secreta que conduce a un sótano. ¿Bajas al sótano o prefieres salir de la mansión?";
+            gameContainer.innerHTML += `
+                <button class="choice" onclick="choose('sotano')">Bajar al sótano</button>
+                <button class="choice" onclick="choose('salir_mansion')">Salir de la mansión</button>
+            `;
+        } else if (option === 'esconderse') {
+            storyText.innerHTML = "Te escondes detrás de un árbol, pero sientes una mano fría en tu hombro. Has sido atrapado. Fin del juego.";
+            gameContainer.innerHTML += `<button class="choice" onclick="choose('reiniciar')">Reiniciar</button>`;
+        } else if (option === 'correr') {
+            storyText.innerHTML = "Sigues corriendo y logras escapar del bosque. Respiras aliviado, pero siempre sentirás que algo quedó atrás sin resolver. Final: Escapaste.";
+            gameContainer.innerHTML += `<button class="choice" onclick="choose('reiniciar')">Reiniciar</button>`;
+        } else if (option === 'darse_vuelta') {
+            storyText.innerHTML = "Te das la vuelta y ves una figura oscura que desaparece. Encuentras una llave en el suelo. Final: Un misterio sin resolver.";
+            gameContainer.innerHTML += `<button class="choice" onclick="choose('reiniciar')">Reiniciar</button>`;
+        } else if (option === 'tocar_espejo') {
+            storyText.innerHTML = "Al tocar el espejo, te ves arrastrado a otra dimensión. Nunca se vuelve a saber de ti. Fin del juego.";
+            gameContainer.innerHTML += `<button class="choice" onclick="choose('reiniciar')">Reiniciar</button>`;
+        } else if (option === 'sotano') {
+            storyText.innerHTML = "Encuentras un cofre antiguo lleno de tesoros. ¡Has ganado! Final: El descubridor del tesoro.";
+            gameContainer.innerHTML += `<button class="choice" onclick="choose('reiniciar')">Reiniciar</button>`;
+        } else if (option === 'salir_mansion') {
+            storyText.innerHTML = "Decides salir, pero siempre recordarás la sensación de que algo quedó sin descubrir. Final: Una decisión prudente.";
+            gameContainer.innerHTML += `<button class="choice" onclick="choose('reiniciar')">Reiniciar</button>`;
+        } else if (option === 'reiniciar') {
+            location.reload();
+        }
+    }
+</script>
+
+</body>
+</html>
